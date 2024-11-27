@@ -23,3 +23,8 @@ go.work.sum
 
 # env file
 .env
+/.idea/encodings.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/.gitignore
+/.idea/advent-of-code-2024.iml
