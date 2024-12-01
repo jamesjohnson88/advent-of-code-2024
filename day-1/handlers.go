@@ -1,4 +1,4 @@
-package handlers
+package day_1
 
 import (
 	"bufio"
