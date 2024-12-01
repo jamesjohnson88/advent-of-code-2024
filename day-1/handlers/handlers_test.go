@@ -21,3 +21,21 @@ func TestPerformTaskOneFull(t *testing.T) {
 		t.Errorf("PerformTaskOne() = %v; want %v", got, expected)
 	}
 }
+
+func TestPerformTaskTwoShort(t *testing.T) {
+	expected := 31
+	got := PerformTaskTwo("../data-1.txt")
+
+	if got != expected {
+		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
+	}
+}
+
+func TestPerformTaskTwoFull(t *testing.T) {
+	expected := 27732508
+	got := PerformTaskTwo("../data.txt")
+
+	if got != expected {
+		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
+	}
+}
