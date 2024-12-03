@@ -20,20 +20,20 @@ func TestPerformTaskOneFull(t *testing.T) {
 	}
 }
 
-//func TestPerformTaskTwoShort(t *testing.T) {
-//	expected := 48
-//	got := PerformTaskTwo("data-short-2.txt")
-//
-//	if got != expected {
-//		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
-//	}
-//}
-//
-//func TestPerformTaskTwoFull(t *testing.T) {
-//	expected := 27732508
-//	got := PerformTaskTwo("data-full.txt")
-//
-//	if got != expected {
-//		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
-//	}
-//}
+func TestPerformTaskTwoShort(t *testing.T) {
+	expected := 48
+	got := PerformTaskTwo("data-short-2.txt")
+
+	if got != expected {
+		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
+	}
+}
+
+func TestPerformTaskTwoFull(t *testing.T) {
+	expected := 63866497
+	got := PerformTaskTwo("data-full.txt")
+
+	if got != expected {
+		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
+	}
+}
