@@ -1,11 +1,9 @@
 package day_3
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestPerformTaskOneShort(t *testing.T) {
-	expected := 11
+	expected := 161
 	got := PerformTaskOne("data-short.txt")
 
 	if got != expected {
@@ -13,18 +11,18 @@ func TestPerformTaskOneShort(t *testing.T) {
 	}
 }
 
-//func TestPerformTaskOneFull(t *testing.T) {
-//	expected := 765748
-//	got := PerformTaskOne("data-full.txt")
-//
-//	if got != expected {
-//		t.Errorf("PerformTaskOne() = %v; want %v", got, expected)
-//	}
-//}
-//
+func TestPerformTaskOneFull(t *testing.T) {
+	expected := 171183089
+	got := PerformTaskOne("data-full.txt")
+
+	if got != expected {
+		t.Errorf("PerformTaskOne() = %v; want %v", got, expected)
+	}
+}
+
 //func TestPerformTaskTwoShort(t *testing.T) {
-//	expected := 31
-//	got := PerformTaskTwo("data-short.txt")
+//	expected := 48
+//	got := PerformTaskTwo("data-short-2.txt")
 //
 //	if got != expected {
 //		t.Errorf("PerformTaskTwo() = %v; want %v", got, expected)
