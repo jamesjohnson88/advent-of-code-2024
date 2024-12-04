@@ -10,8 +10,8 @@ func PerformTaskOne(filePath, targetWord string) int {
 	return findMatches(GetInput(filePath), targetWord)
 }
 
-func PerformTaskTwo(filePath string) int {
-	return 0
+func PerformTaskTwo(filePath, targetWord string) int {
+	return findCrossShapeMatches(GetInput(filePath), targetWord)
 }
 
 func findMatches(grid [][]rune, word string) int {
@@ -41,6 +41,55 @@ func findMatches(grid [][]rune, word string) int {
 				if isMatch(i, j, dx, dy) {
 					matchCount++
 				}
+			}
+		}
+	}
+
+	return matchCount
+}
+
+func findCrossShapeMatches(grid [][]rune, word string) int {
+	if len(word) != 3 {
+		log.Fatal("word must have 3 characters")
+	}
+
+	rows := len(grid)
+	cols := len(grid[0])
+	centerChar := rune(word[1])
+	diagonalPairs := [][2][2]int{
+		{{-1, -1}, {1, 1}}, // top-left to bottom-right
+		{{-1, 1}, {1, -1}}, // top-right to bottom-left
+	}
+
+	isCrossShapedMatch := func(x, y int) bool {
+		diagonalMatches := 0
+		// two pairs, each represents one diagonal line of the 'X'
+		for _, pair := range diagonalPairs {
+			d1, d2 := pair[0], pair[1]
+			// apply diagonal transforms to grid coordinates
+			nx1, ny1 := x+d1[0], y+d1[1]
+			nx2, ny2 := x+d2[0], y+d2[1]
+
+			// check bounds for new coordinates
+			if nx1 >= 0 && ny1 >= 0 && nx1 < rows && ny1 < cols &&
+				nx2 >= 0 && ny2 >= 0 && nx2 < rows && ny2 < cols {
+				// ensure diagonal is valid, either forward or backwards
+				if (grid[nx1][ny1] == rune(word[0]) && grid[nx2][ny2] == rune(word[2])) ||
+					(grid[nx1][ny1] == rune(word[2]) && grid[nx2][ny2] == rune(word[0])) {
+					diagonalMatches++
+				}
+			}
+		}
+
+		// both valid matches means a valid 'X'
+		return diagonalMatches == len(diagonalPairs)
+	}
+
+	matchCount := 0
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if grid[i][j] == centerChar && isCrossShapedMatch(i, j) {
+				matchCount++
 			}
 		}
 	}
